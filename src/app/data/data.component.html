@@ -1,0 +1,32 @@
+<h2 class=" jumbotron text-center mt-5" style="padding:1% ;margin-right:12%; margin-left: 12%">ELEMENT DATA LIST</h2>
+<button mat-raised-button color="primary" style="margin-left: 15%;border-bottom:14px" (click)="back()">Back</button>
+<button style="margin-left:75%" color="primary" mat-raised-button [routerLink]="['/add']"
+  routerLinkActive="router-link-active">+Add</button><br><br>
+<table mat-table [dataSource]="Data" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Position </th>
+    <td mat-cell *matCellDef="let element,let i=index "> {{element.position}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn"
+        (click)="delete(element.id)">delete</button>
+      <button mat-raised-button color="primary" [routerLink]="['/update', element.id]"
+        style="margin-left: 20px">update</button> </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<router-outlet></router-outlet>
